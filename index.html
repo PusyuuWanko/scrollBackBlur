@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scroll Blur</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    height: 2000px; /* スクロールができるように高さを設定 */
+  }
+  .content {
+    height: 2000px; /* バックドロップフィルターの影響を受ける要素 */
+    background: url('https://21emon.wjg.jp/PusyuuAppStore/assets/images/app_image2.png') no-repeat center center/cover;
+    position: relative;
+    z-index: 1;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(0); /* 初期状態はブラーを無効に */
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+<div class="content">
+  <!-- ここにコンテンツを配置 -->
+</div>
+<div class="overlay"></div>
+
+<script>
+  window.addEventListener('scroll', function() {
+    // スクロール位置に応じてブラーの強度を変化させる
+    var blurStrength = window.scrollY / 50; // 50はブラーの変化速度を調整するための値
+    document.querySelector('.overlay').style.backdropFilter = 'blur(' + blurStrength + 'px)';
+  });
+</script>
+</body>
+</html>
